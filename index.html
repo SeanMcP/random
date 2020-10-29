@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random</title>
+    <meta
+      name="description"
+      content="Generate random numbers, colors, animals, and group names"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐵</text></svg>"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1><span aria-label="monkey" role="img">🐵</span> Random</h1>
+        <p>Generate random numbers, colors, animals, and group names</p>
+      </header>
+      <section class="section" id="number">
+        <form id="number-form">
+          <h2>Number</h2>
+          <p>Generate a random number between:</p>
+          <label class="field">
+            <b>Min</b><input type="number" name="number-min" required value="1" />
+          </label>
+          <label class="field">
+            <b>Max</b><input type="number" name="number-max" required value="24" />
+          </label>
+          <button>Go</button>
+        </form>
+        <div aria-live="polite" id="number-output">22</div>
+      </section>
+    </main>
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>
