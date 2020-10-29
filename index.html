@@ -25,14 +25,27 @@
           <h2>Number</h2>
           <p>Generate a random number between:</p>
           <label class="field">
-            <b>Min</b><input type="number" name="number-min" required value="1" />
+            <b>Min</b>
+            <input type="number" name="number-min" required value="1" />
           </label>
           <label class="field">
-            <b>Max</b><input type="number" name="number-max" required value="24" />
+            <b>Max</b>
+            <input type="number" name="number-max" required value="24" />
           </label>
           <button>Go</button>
         </form>
         <div aria-live="polite" id="number-output">22</div>
+      </section>
+      <section class="section" id="animal">
+        <form id="animal-form">
+          <h2>Animal</h2>
+          <p>Generate a random animal</p>
+          <button>Go</button>
+        </form>
+        <div aria-live="polite" id="animal-output">
+          <span aria-hidden="true">🐵</span>
+          Monkey
+        </div>
       </section>
     </main>
     <script src="./main.js" type="module"></script>
