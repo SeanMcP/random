@@ -9,4 +9,17 @@
       min + Math.random() * (max + 1 - min)
     );
   });
+  document
+    .getElementById("animal-form")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const { animals } = await import("./animals.js");
+      debugger;
+      const names = Object.keys(animals);
+      const random = names[Math.floor(Math.random() * names.length)];
+
+      document.getElementById(
+        "animal-output"
+      ).innerHTML = `<span aria-hidden="true">${animals[random]}</span>${random}`;
+    });
 })();
