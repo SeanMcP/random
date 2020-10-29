@@ -23,4 +23,15 @@
       "animal-output"
     ).innerHTML = `<span aria-hidden="true">${animals[random]}</span>${random}`;
   });
+
+  const { colors } = await import("./colors.js");
+
+  document.getElementById("color-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const random = colors[Math.floor(Math.random() * colors.length)];
+
+    const output = document.getElementById("color-output");
+    output.textContent = random;
+    output.style.backgroundColor = random.replace(/\ /g, '');
+  });
 })();
