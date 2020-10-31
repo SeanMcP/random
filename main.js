@@ -2,6 +2,33 @@
 
 (async () => {
   // Code
+  const sections = document.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  function displaySection() {
+    const hash = location.hash.slice(1);
+    sections.forEach((section) => {
+      if (section.id === hash) {
+        section.removeAttribute("hidden");
+      } else {
+        section.hidden = true;
+      }
+    });
+    navLinks.forEach((link) => {
+      if (link.href.slice(link.href.indexOf("#") + 1) === hash) {
+        link.setAttribute("aria-current", true);
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+  displaySection();
+
+  window.addEventListener("hashchange", (event) => {
+    event.preventDefault();
+    displaySection();
+  });
+
   document.getElementById("number-form").addEventListener("submit", (event) => {
     event.preventDefault();
     const fd = new FormData(event.target);
@@ -44,13 +71,13 @@
   });
 
   document
-    .getElementById("teams-form")
+    .getElementById("groups-form")
     .addEventListener("submit", async (event) => {
       event.preventDefault();
       const fd = new FormData(event.target);
       const number = parseInt(fd.get("number"));
       const record = {};
-      const teamNames = [];
+      const groupNames = [];
 
       for (let i = 0; i < number; i++) {
         let color = randomColor();
@@ -65,23 +92,25 @@
         }
         record[animal] = true;
 
-        teamNames.push([color, animal]);
+        groupNames.push([color, animal]);
       }
 
       const { pluralize } = await import("./pluralize.js");
 
-      document.getElementById("teams-output").innerHTML = teamNames
+      document.getElementById("groups-output").innerHTML = groupNames
         .map(
           ([color, animal]) =>
-            `<div class="team">
-            <span class="team__color text-outline" style="color: ${color.replace(
+            `<div class="group">
+            <span class="group__color text-outline" style="color: ${color.replace(
               /\ /g,
               ""
             )}">
               ${color}
             </span>
-            <span class="team__animal">${pluralize(animal, 2, false)}</span>
-            <span aria-hidden="true" class="team__emoji" role="img">${animals[animal]}</span>
+            <span class="group__animal">${pluralize(animal, 2, false)}</span>
+            <span aria-hidden="true" class="group__emoji" role="img">${
+              animals[animal]
+            }</span>
           </div>`
         )
         .join("");

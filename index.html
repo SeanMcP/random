@@ -20,7 +20,13 @@
         <h1><span aria-label="monkey" role="img">🐵</span> Random</h1>
         <p>Generate random numbers, colors, animals, and group names</p>
       </header>
-      <section class="section" id="number">
+      <nav>
+        <a href="#number">Number</a>
+        <a href="#animal">Animal</a>
+        <a href="#color">Color</a>
+        <a href="#groups">Groups</a>
+      </nav>
+      <section class="section" hidden id="number">
         <form id="number-form">
           <h2>Number</h2>
           <p>Generate a random number between:</p>
@@ -36,7 +42,7 @@
         </form>
         <div aria-live="polite" id="number-output">22</div>
       </section>
-      <section class="section" id="animal">
+      <section class="section" hidden id="animal">
         <form id="animal-form">
           <h2>Animal</h2>
           <p>Generate a random animal</p>
@@ -47,7 +53,7 @@
           Monkey
         </div>
       </section>
-      <section class="section" id="color">
+      <section class="section" hidden id="color">
         <form id="color-form">
           <h2>Color</h2>
           <p>Generate a random color</p>
@@ -62,17 +68,17 @@
           Blue
         </div>
       </section>
-      <section class="section" id="teams">
-        <form id="teams-form">
-          <h2>Teams</h2>
-          <p>Generate team names</p>
+      <section class="section" hidden id="groups">
+        <form id="groups-form">
+          <h2>Groups</h2>
+          <p>Generate group names</p>
           <label class="field">
-            <b>Number of teams</b>
+            <b>Number of groups</b>
             <input min="1" max="12" name="number" type="number" value="4" />
           </label>
           <button>Go</button>
         </form>
-        <div aria-live="polite" id="teams-output"></div>
+        <div aria-live="polite" id="groups-output"></div>
       </section>
     </main>
     <script src="./main.js" type="module"></script>

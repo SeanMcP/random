@@ -12,13 +12,13 @@ input {
   font-size: inherit;
 }
 
+nav {
+  margin-bottom: 1rem;
+}
+
 .section {
   border: 1px solid #ddd;
   padding: 1rem;
-}
-
-.section > * + * {
-  margin-top: 1rem;
 }
 
 .section + .section {
@@ -47,6 +47,7 @@ form > * {
   font-size: 3rem;
   font-weight: bold;
   justify-content: center;
+  margin-top: 1rem;
   padding: 1rem;
   text-align: center;
 }
@@ -62,11 +63,11 @@ form > * {
   -webkit-text-stroke-width: 1px;
 }
 
-#teams-output {
+#groups-output {
   text-transform: capitalize;
 }
 
-.team {
+.group {
   --emoji-column: 3rem;
   align-items: center;
   column-gap: 0.5rem;
@@ -77,12 +78,12 @@ form > * {
   width: 100%;
 }
 
-.team__emoji {
+.group__emoji {
   grid-column: 1 / span 1;
   grid-row: 1 / span 2;
 }
 
-#teams-output .team + .team {
+#groups-output .group + .group {
   margin-top: 2rem;
 }
 
