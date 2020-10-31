@@ -14,24 +14,76 @@
 
   const { animals } = await import("./animals.js");
 
-  document.getElementById("animal-form").addEventListener("submit", (event) => {
-    event.preventDefault();
+  function randomAnimal() {
     const names = Object.keys(animals);
     const random = names[Math.floor(Math.random() * names.length)];
+    return [random, animals[random]];
+  }
+
+  document.getElementById("animal-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const [name, symbol] = randomAnimal();
 
     document.getElementById(
       "animal-output"
-    ).innerHTML = `<span aria-hidden="true">${animals[random]}</span>${random}`;
+    ).innerHTML = `<span aria-hidden="true">${symbol}</span>${name}`;
   });
 
   const { colors } = await import("./colors.js");
 
+  function randomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
   document.getElementById("color-form").addEventListener("submit", (event) => {
     event.preventDefault();
-    const random = colors[Math.floor(Math.random() * colors.length)];
-
+    const color = randomColor();
     const output = document.getElementById("color-output");
-    output.textContent = random;
-    output.style.backgroundColor = random.replace(/\ /g, '');
+    output.textContent = color;
+    output.style.backgroundColor = color.replace(/\ /g, "");
   });
+
+  document
+    .getElementById("teams-form")
+    .addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const fd = new FormData(event.target);
+      const number = parseInt(fd.get("number"));
+      const record = {};
+      const teamNames = [];
+
+      for (let i = 0; i < number; i++) {
+        let color = randomColor();
+        while (record[color]) {
+          color = randomColor();
+        }
+        record[color] = true;
+
+        let animal = randomAnimal()[0];
+        while (record[animal]) {
+          animal = randomAnimal()[0];
+        }
+        record[animal] = true;
+
+        teamNames.push([color, animal]);
+      }
+
+      const { pluralize } = await import("./pluralize.js");
+
+      document.getElementById("teams-output").innerHTML = teamNames
+        .map(
+          ([color, animal]) =>
+            `<div class="team">
+            <span class="team__color text-outline" style="color: ${color.replace(
+              /\ /g,
+              ""
+            )}">
+              ${color}
+            </span>
+            <span class="team__animal">${pluralize(animal, 2, false)}</span>
+            <span aria-hidden="true" class="team__emoji" role="img">${animals[animal]}</span>
+          </div>`
+        )
+        .join("");
+    });
 })();

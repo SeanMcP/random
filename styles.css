@@ -14,9 +14,11 @@ input {
 
 .section {
   border: 1px solid #ddd;
-  display: grid;
-  gap: 1rem;
   padding: 1rem;
+}
+
+.section > * + * {
+  margin-top: 1rem;
 }
 
 .section + .section {
@@ -37,12 +39,6 @@ form > * {
   margin: 0;
 }
 
-@media screen and (min-width: 600px) {
-  .section {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 [id$="output"] {
   align-items: center;
   border: 1px dashed #ddd;
@@ -57,8 +53,41 @@ form > * {
 
 #color-output {
   color: white;
-  text-shadow: 0 2px 2px hsla(0, 0%, 0%, 65%);
   text-transform: capitalize;
+}
+
+.text-outline {
+  text-shadow: 0 2px 2px hsla(0, 0%, 0%, 65%);
   -webkit-text-stroke-color:  black;
   -webkit-text-stroke-width: 1px;
+}
+
+#teams-output {
+  text-transform: capitalize;
+}
+
+.team {
+  --emoji-column: 3rem;
+  align-items: center;
+  column-gap: 0.5rem;
+  display: grid;
+  grid-template-columns: var(--emoji-column) auto;
+  line-height: 1;
+  text-align: left;
+  width: 100%;
+}
+
+.team__emoji {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+#teams-output .team + .team {
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+  [id$="output"] {
+    font-size: 2.5rem;
+  }
 }

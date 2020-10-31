@@ -53,7 +53,26 @@
           <p>Generate a random color</p>
           <button>Go</button>
         </form>
-        <div aria-live="polite" id="color-output" style="background-color: blue">Blue</div>
+        <div
+          aria-live="polite"
+          class="text-outline"
+          id="color-output"
+          style="background-color: blue"
+        >
+          Blue
+        </div>
+      </section>
+      <section class="section" id="teams">
+        <form id="teams-form">
+          <h2>Teams</h2>
+          <p>Generate team names</p>
+          <label class="field">
+            <b>Number of teams</b>
+            <input min="1" max="12" name="number" type="number" value="4" />
+          </label>
+          <button>Go</button>
+        </form>
+        <div aria-live="polite" id="teams-output"></div>
       </section>
     </main>
     <script src="./main.js" type="module"></script>
