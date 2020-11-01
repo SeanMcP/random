@@ -6,7 +6,8 @@
   const navLinks = document.querySelectorAll("nav a");
 
   function displaySection() {
-    const hash = location.hash.slice(1);
+    let hash = location.hash.slice(1);
+    if (!hash) hash = 'number'
     sections.forEach((section) => {
       if (section.id === hash) {
         section.removeAttribute("hidden");
